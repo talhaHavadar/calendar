@@ -133,6 +133,16 @@ func (tc TRCalendar) NotableDay(date time.Time) (bool, string, bool) {
 	return false, "", false
 }
 
+// Returns work days for given date range. Work days are days that not include Sunday, Saturday and Red Flag days.
+// Note: without adding to religious days
+func(tc TRCalendar) WorkDays(start time.Time, end time.Time) ([]time.Time) {
+	days := []time.Time{}
+
+
+
+	return days
+}
+
 // Checks if a given date is in a notable time range (summer holidays, for instance)
 func (tc TRCalendar) NotablePeriod(date time.Time) (bool, string) {
 	// TODO:
