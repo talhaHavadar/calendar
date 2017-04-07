@@ -49,7 +49,7 @@ func flag(cal calendar.Calendar, year int) {
 
 func main() {
 	cal, err := calendar.NewCalendar("tr_TR", false)
-	cal = cal.(calendar.TRCalendar)
+	var trcal calendar.TRCalendar = cal.(calendar.TRCalendar)
 
 	if err != nil {
 		panic("Could not create a TR calendar!")
@@ -57,11 +57,8 @@ func main() {
 
 	//year := time.Now().Year()
 	year := 2016
-
-	// When is easter this year?
-	easter := calendar.EasterDay(year)
-	fmt.Printf("Easter %d is at %s\n", year, easter.String()[:10])
-
+	days := trcal.WorkDays(time.Now(), time.Now().AddDate(0,0,10))
+	fmt.Println("Workdays: ", days)
 	// Show some info for March this year
 	//datebonanza(year, time.Month(3))
 

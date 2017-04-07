@@ -134,11 +134,19 @@ func (tc TRCalendar) NotableDay(date time.Time) (bool, string, bool) {
 }
 
 // Returns work days for given date range. Work days are days that not include Sunday, Saturday and Red Flag days.
-// Note: without adding to religious days
+// Note: without adding to religious days. start date inclusive, end date exclusive
 func(tc TRCalendar) WorkDays(start time.Time, end time.Time) ([]time.Time) {
 	days := []time.Time{}
-
-
+	if _, _, flag := tc.RedDay(start); !flag && start.Weekday() != time.Sunday && start.Weekday() != time.Saturday {
+		days = append(days, start)
+	}
+	start = start.AddDate(0, 0, 1)
+	for start.Before(end) {
+		if _, _, flag := tc.RedDay(start); !flag && start.Weekday() != time.Sunday && start.Weekday() != time.Saturday {
+			days = append(days, start)
+		}
+		start = start.AddDate(0, 0, 1)
+	}
 
 	return days
 }
