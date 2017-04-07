@@ -11,7 +11,7 @@ import (
 
 type TRCalendar struct{}
 
-// Create a new US calendar
+// Create a new TR calendar
 func NewTRCalendar() TRCalendar {
 	return TRCalendar{}
 }

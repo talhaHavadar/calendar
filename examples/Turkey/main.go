@@ -1,4 +1,4 @@
-package Turkey
+package main
 
 import (
 	"fmt"
@@ -48,7 +48,9 @@ func flag(cal calendar.Calendar, year int) {
 }
 
 func main() {
-	cal, err := calendar.NewCalendar("tr_TR", true)
+	cal, err := calendar.NewCalendar("tr_TR", false)
+	cal = cal.(calendar.TRCalendar)
+
 	if err != nil {
 		panic("Could not create a TR calendar!")
 	}
